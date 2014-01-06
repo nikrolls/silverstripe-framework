@@ -328,6 +328,18 @@ class SapphireTest extends PHPUnit_Framework_TestCase {
 		// Set default timezone consistently to avoid NZ-specific dependencies
 		date_default_timezone_set('UTC');
 	}
+
+    /**
+     * PHPUnit calls setUpBeforeClass which is equivalent to SilverStripe's {@link setUpOnce()}. This function does the
+     * necessary routing when loaded via bootstrap.php
+     */
+    public static function setUpBeforeClass()
+    {
+        global $controller;
+        if ($controller instanceof FakeController) {
+            singleton(get_called_class())->setUpOnce();
+        }
+    }
 	
 	/**
 	 * tearDown method that's called once per test class rather once per test method.
@@ -354,6 +366,18 @@ class SapphireTest extends PHPUnit_Framework_TestCase {
 			$this->resetDBSchema();
 		}
 	}
+
+    /**
+     * PHPUnit calls tearDownAfterClass which is equivalent to SilverStripe's {@link tearDownOnce()}. This function does the
+     * necessary routing when loaded via bootstrap.php
+     */
+    public static function tearDownAfterClass()
+    {
+        global $controller;
+        if ($controller instanceof FakeController) {
+            singleton(get_called_class())->tearDownOnce();
+        }
+    }
 	
 	/**
 	 * @return FixtureFactory
