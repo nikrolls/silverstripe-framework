@@ -18,7 +18,7 @@ these at `http://localhost/`.  For example, you might have a project at `~/Sites
 `http://localhost/myproject/`.
 
 Create a new file, `~/Sites/_ss_environment.php`.  Put the following content in it, editing the values of the
-"SS_DATABASE_..." and "SS_DEFAULT_ADMIN_..." defines as appropriate.
+"SS\_DATABASE\_..." and "SS\_DEFAULT\_ADMIN\_..." defines as appropriate.
 
 	:::php
 	<?php
